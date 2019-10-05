@@ -89,13 +89,7 @@ public class Sign_Up_Form extends javax.swing.JFrame {
         //PreparedStatement st;
         
    // }
-    
-    
-    
-    
-    
-    
-    
+      
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,6 +160,12 @@ public class Sign_Up_Form extends javax.swing.JFrame {
         last_name_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 last_name_fieldActionPerformed(evt);
+            }
+        });
+
+        first_name_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                first_name_fieldActionPerformed(evt);
             }
         });
 
@@ -523,6 +523,10 @@ public class Sign_Up_Form extends javax.swing.JFrame {
     private void address_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_address_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_address_fieldActionPerformed
+
+    private void first_name_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_first_name_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_first_name_fieldActionPerformed
 
     
         
