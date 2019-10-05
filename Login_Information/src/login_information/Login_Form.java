@@ -23,6 +23,10 @@ public class Login_Form extends javax.swing.JFrame {
     public Login_Form() {
         initComponents();
         
+        
+        
+        
+        
         // center the form
         this.setLocationRelativeTo(null);
         
@@ -41,7 +45,9 @@ public class Login_Form extends javax.swing.JFrame {
          
          Border enter_username_field_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.blue);
          enter_username_field.setBorder(enter_username_field_border);
-         
+        
+        
+        
     }
     
 
@@ -392,7 +398,9 @@ public class Login_Form extends javax.swing.JFrame {
         
          Border enter_username_field_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.gray);
         enter_username_field.setBorder(enter_username_field_border);
-        enter_username_field.setForeground(Color.gray);  
+        enter_username_field.setForeground(Color.gray);
+        
+        
         
     }//GEN-LAST:event_enter_username_fieldMouseExited
 
@@ -472,6 +480,9 @@ public class Login_Form extends javax.swing.JFrame {
     private void cancel_lable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_lable2MouseClicked
         
         System.exit(0);
+        
+        
+        
         
         
     }//GEN-LAST:event_cancel_lable2MouseClicked
