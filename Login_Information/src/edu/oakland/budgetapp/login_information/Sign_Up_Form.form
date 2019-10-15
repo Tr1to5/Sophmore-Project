@@ -255,7 +255,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="conform_password_label">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Conform Password"/>
+                    <Property name="text" type="java.lang.String" value="Confirm Password"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="phone_number_label">
@@ -285,6 +285,7 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="female_radio_button">
                   <Properties>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Female"/>
                   </Properties>
                   <Events>

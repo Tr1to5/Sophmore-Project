@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login_information;
+package edu.oakland.budgetapp.login_information;
 
 import javax.swing.BorderFactory;
 import java.awt.Color;
@@ -63,12 +63,12 @@ public class Login_Form extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        username_field = new javax.swing.JTextField();
-        password_field = new javax.swing.JTextField();
         enter_username_field = new javax.swing.JTextField();
         enter_password_field = new javax.swing.JPasswordField();
         login_button = new javax.swing.JButton();
         create_new_account = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         mini_label1 = new javax.swing.JLabel();
         cancel_lable2 = new javax.swing.JLabel();
         login_panel = new javax.swing.JPanel();
@@ -80,17 +80,9 @@ public class Login_Form extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
-        username_field.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        username_field.setForeground(new java.awt.Color(153, 153, 153));
-        username_field.setText("Username");
-
-        password_field.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        password_field.setForeground(new java.awt.Color(153, 153, 153));
-        password_field.setText("Password");
-
         enter_username_field.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enter_username_field.setForeground(new java.awt.Color(153, 153, 153));
-        enter_username_field.setText("enter username");
+        enter_username_field.setText("enter email");
         enter_username_field.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         enter_username_field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -108,15 +100,10 @@ public class Login_Form extends javax.swing.JFrame {
                 enter_username_fieldMouseExited(evt);
             }
         });
-        enter_username_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enter_username_fieldActionPerformed(evt);
-            }
-        });
 
         enter_password_field.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enter_password_field.setForeground(new java.awt.Color(153, 153, 153));
-        enter_password_field.setText("ashoka123");
+        enter_password_field.setText("enter password");
         enter_password_field.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         enter_password_field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -174,25 +161,33 @@ public class Login_Form extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Email address:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Password:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(username_field, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .addComponent(password_field))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(enter_password_field)
                     .addComponent(enter_username_field, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(132, Short.MAX_VALUE)
                 .addComponent(create_new_account)
                 .addGap(109, 109, 109))
         );
@@ -201,12 +196,12 @@ public class Login_Form extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(username_field, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enter_username_field, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(enter_username_field, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password_field, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enter_password_field, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(enter_password_field, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -354,7 +349,7 @@ public class Login_Form extends javax.swing.JFrame {
         
         // clear the textfield on focus if the text is "enter username"
         
-        if(enter_username_field.getText().trim().toLowerCase().equals("enter username"))
+        if(enter_username_field.getText().trim().toLowerCase().equals("enter email"))
         {
             enter_username_field.setText("");
             enter_username_field.setForeground(Color.black);
@@ -363,7 +358,7 @@ public class Login_Form extends javax.swing.JFrame {
         // set a blue border to username field
         
          Border username_field_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.blue);
-         username_field.setBorder(username_field_border);
+        // username_field.setBorder(username_field_border);
         
     }//GEN-LAST:event_enter_username_fieldFocusGained
 
@@ -371,20 +366,16 @@ public class Login_Form extends javax.swing.JFrame {
         
         // if the enter_username_field is equal to enter username or is empty we will set it on focus lost event
         
-        if(enter_username_field.getText().trim().equals("")|| enter_username_field.getText().trim().toLowerCase().equals("enter username") )
+        if(enter_username_field.getText().trim().equals("")|| enter_username_field.getText().trim().toLowerCase().equals("") )
         
         { 
-            enter_username_field.setText("enter username");
+            enter_username_field.setText("enter email");
             enter_username_field.setForeground(new Color(142,142,142));
                
         }
         
     }//GEN-LAST:event_enter_username_fieldFocusLost
-/*
-    private void enter_username_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enter_username_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enter_username_fieldActionPerformed
-*/
+/**/
     private void enter_username_fieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enter_username_fieldMouseEntered
         
         Border enter_username_field_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red);
@@ -420,7 +411,7 @@ public class Login_Form extends javax.swing.JFrame {
         // set a blue border to username field
         
          Border username_field_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.blue);
-         username_field.setBorder(username_field_border);
+         //username_field.setBorder(username_field_border);
         
     }//GEN-LAST:event_enter_password_fieldFocusGained
 
@@ -456,6 +447,9 @@ public class Login_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_enter_password_fieldMouseExited
 
     private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
+
+        String email_address=this.enter_username_field.getText();
+        String password=this.enter_password_field.getPassword().toString();
         // TODO add your handling code here:
     }//GEN-LAST:event_login_buttonActionPerformed
 
@@ -568,6 +562,8 @@ public class Login_Form extends javax.swing.JFrame {
     private javax.swing.JLabel create_new_account;
     private javax.swing.JPasswordField enter_password_field;
     private javax.swing.JTextField enter_username_field;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -575,7 +571,5 @@ public class Login_Form extends javax.swing.JFrame {
     private javax.swing.JButton login_button;
     private javax.swing.JPanel login_panel;
     private javax.swing.JLabel mini_label1;
-    private javax.swing.JTextField password_field;
-    private javax.swing.JTextField username_field;
     // End of variables declaration//GEN-END:variables
 }

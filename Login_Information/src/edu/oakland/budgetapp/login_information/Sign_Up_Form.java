@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login_information;
+package edu.oakland.budgetapp.login_information;
 
+import edu.oakland.budgetapp.DB.DbConnector;
 import javax.swing.BorderFactory;
 import java.awt.Color;
 import javax.swing.border.Border;
@@ -179,7 +180,7 @@ public class Sign_Up_Form extends javax.swing.JFrame {
 
         password_label.setText("Password");
 
-        conform_password_label.setText("Conform Password");
+        conform_password_label.setText("Confirm Password");
 
         phone_number_label.setText("Phone Number");
 
@@ -198,6 +199,7 @@ public class Sign_Up_Form extends javax.swing.JFrame {
 
         male_radio_button.setText("Male");
 
+        female_radio_button.setSelected(true);
         female_radio_button.setText("Female");
         female_radio_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -430,9 +432,64 @@ public class Sign_Up_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_signup_fieldMouseExited
 
     private void signup_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_fieldActionPerformed
-        // TODO add your handling code here:
+        
+        if(!this.jCheckBox1.isSelected())
+        {
+            JOptionPane.showMessageDialog(this, "You must accept Terms of Use!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+            
+        String password=new String (this.password_field.getPassword());
+        String confirmPassword=new String (this.conform_password_field.getPassword());
+        
+        if (password.compareTo(confirmPassword)!=0){
+             JOptionPane.showMessageDialog(this, "Passwords do not match!",
+                    "Invalid password", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        UserInformation newUser= new UserInformation();
+        newUser.setFirstName(this.first_name_field.getText());
+        newUser.setLastName(this.last_name_field.getText());
+        newUser.setAddress(this.address_field.getText());
+        newUser.setEmailAddress(this.email_field.getText());
+        newUser.setPassword( password );
+        newUser.setPhoneNumber(this.phone_number_field.getText());
+        if(this.male_radio_button.isSelected())
+            newUser.setGender("M");
+        else newUser.setGender("F");
+        
+        if (newUser.getFirstName().length()==0 ||newUser.getLastName().length()==0){
+             JOptionPane.showMessageDialog(this, "First name and Last name cannot be empty!",
+                    "Invalid name", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!isValidEmailAddress(newUser.getEmailAddress())){
+            JOptionPane.showMessageDialog(this, "Invalid email address!",
+                    "Invalid email", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        DbConnector connection =DbConnector.getDBConnection();
+        connection.saveNewUser(newUser);
+        
+        JOptionPane.showMessageDialog(this, "New User created",
+                    "Success", JOptionPane.PLAIN_MESSAGE);
+        Login_Form login = new Login_Form();
+        login.setVisible(true);
+        login.pack();
+        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_signup_fieldActionPerformed
 
+    public boolean isValidEmailAddress(String email) {
+           String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+           java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+           java.util.regex.Matcher m = p.matcher(email);
+           return m.matches();
+    }
+    
     private void mini_label1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mini_label1MouseClicked
 
         this.setState(JFrame.ICONIFIED);
