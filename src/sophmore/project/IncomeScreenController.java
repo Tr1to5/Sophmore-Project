@@ -60,13 +60,22 @@ public class IncomeScreenController implements Initializable {
     @FXML
     private void onSubmit(ActionEvent event) {
         try {
-            String income = "Income per month: $" + textField.getText();
+            //String income = "Income per month: $" + textField.getText();
+            /*File file = new File("text.txt");
+            if (!file.exists()){
+                file.createNewFile();
+            }*/
+            BufferedWriter writer = new BufferedWriter (new FileWriter ("text.txt",true));
+            writer.newLine();
+            writer.write("Income per month: $" + textField.getText());
+            writer.close(); 
+            
             Stage stage = (Stage) submit.getScene().getWindow();
             FXMLLoader main = new FXMLLoader(getClass().getResource("Main.fxml"));
             Parent root = main.load();
 
             FXMLDocumentController controller = main.getController();
-            controller.appendText(income);
+            controller.appendText();
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -75,7 +84,7 @@ public class IncomeScreenController implements Initializable {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     /*private void setText(String income) {
         textField.appendText(income);
     }*/
