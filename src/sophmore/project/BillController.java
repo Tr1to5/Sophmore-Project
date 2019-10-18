@@ -46,18 +46,34 @@ public class BillController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        type.setValue("Types of Bill");
+        type.getItems().add("Mortgage");
+        type.getItems().add("Electric");
+        type.getItems().add("Water");
+        type.getItems().add("Phone");
+        type.getItems().add("Internet");
+        type.getItems().add("Others");
     }    
 
     @FXML
     private void onSubmit(ActionEvent event) {
         try {
-            String bill = "Average living expenses per month: $" + textField.getText();
+            //String bill = "Average living expenses per month: $" + textField.getText();
+            /*File file = new File("text.txt");
+            if (!file.exists()){
+                file.createNewFile();
+            }*/
+            BufferedWriter writer = new BufferedWriter (new FileWriter ("text.txt",true));
+            writer.newLine();
+            writer.write("Average living expense per month: $" + textField.getText());
+            writer.close();
+            
             Stage stage = (Stage) submit.getScene().getWindow();
             FXMLLoader main = new FXMLLoader(getClass().getResource("Main.fxml"));
             Parent root = main.load();
 
             FXMLDocumentController controller = main.getController();
-            controller.appendText(bill);
+            controller.appendText();
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -74,6 +90,14 @@ public class BillController implements Initializable {
 
     @FXML
     private void onAdd(ActionEvent event) {
+        ChoiceBox<String> newType = new ChoiceBox();
+        newType.setValue("Types of Bill");
+        newType.getItems().add("Mortgage");
+        newType.getItems().add("Electric");
+        newType.getItems().add("Water");
+        newType.getItems().add("Phone");
+        newType.getItems().add("Internet");
+        newType.getItems().add("Others");
     }
     
 }
