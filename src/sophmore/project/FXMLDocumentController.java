@@ -108,7 +108,40 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    public void appendText(String text) {
-        textArea.appendText(text + "\n");    
+    public void appendText() throws FileNotFoundException {
+        //textArea.appendText(text + "\n");
+        //File file = new File ("text.txt");
+        BufferedReader file = new BufferedReader (new FileReader("text.txt"));
+        Scanner scan = new Scanner(file);
+        while (scan.hasNext()){
+            textArea.appendText(scan.nextLine() + "\n");    
+        }
+        scan.close();
+    }
+
+    /*@FXML
+    private void onDownload(ActionEvent event) {
+    }*/
+
+    @FXML
+    private void onCalculate(ActionEvent event) throws FileNotFoundException {
+        BufferedReader file = new BufferedReader (new FileReader("text.txt"));
+        Scanner scan = new Scanner(file);
+        int income;
+        String[] text;
+        int bill;
+        int saving;
+        int left = 0;
+        while (scan.hasNextLine()){
+            text = scan.nextLine().split(" ");
+            if (scan.hasNextInt()){
+            income = scan.nextInt();
+            //bill = scan.nextInt();
+            //saving = income - bill;
+            left += income;}
+            //break;
+        }
+        textArea.appendText("Leftover per month: $" + left + "\n");
+        scan.close();
     }
 }
