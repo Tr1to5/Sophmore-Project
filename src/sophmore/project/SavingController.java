@@ -60,13 +60,22 @@ public class SavingController implements Initializable {
     @FXML
     private void onSubmit(ActionEvent event) {
         try {
-            String saving = "Average saving per month: $" + textField.getText();
+            //String saving = "Average saving per month: $" + textField.getText();
+            /*File file = new File ("text.txt");
+            if (!file.exists()){
+                file.createNewFile();
+            }*/
+            BufferedWriter writer = new BufferedWriter (new FileWriter ("text.txt",true));
+            writer.newLine();
+            writer.write("Average saving per month: $" + textField.getText());
+            writer.close();
+            
             Stage stage = (Stage) submit.getScene().getWindow();
             FXMLLoader main = new FXMLLoader(getClass().getResource("Main.fxml"));
             Parent root = main.load();
 
             FXMLDocumentController controller = main.getController();
-            controller.appendText(saving);
+            controller.appendText();
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
