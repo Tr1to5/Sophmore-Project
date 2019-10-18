@@ -19,6 +19,12 @@ public class SophmoreProject extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        File text = new File ("text.txt");
+        if (text.length() > 0){
+            PrintWriter writer = new PrintWriter (text);
+            writer.write("");
+            writer.close();
+        }
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         
         Scene scene = new Scene(root);
