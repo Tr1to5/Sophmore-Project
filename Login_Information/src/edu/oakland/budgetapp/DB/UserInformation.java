@@ -3,13 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.oakland.budgetapp.login_information;
+package edu.oakland.budgetapp.DB;
 
 /**
  *
  * @author Mousumi Das
  */
 public class UserInformation {
+
+    /**
+     * @return the userID
+     */
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
+     * @param userID the userID to set
+     */
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    /**
+     * @return the account_balance
+     */
+    public float getAccount_balance() {
+        return account_balance;
+    }
+
+    /**
+     * @param account_balance the account_balance to set
+     */
+    public void setAccount_balance(float account_balance) {
+        this.account_balance = account_balance;
+    }
+
+    /**
+     * @return the debt_balance
+     */
+    public float getDebt_balance() {
+        return debt_balance;
+    }
+
+    /**
+     * @param debt_balance the debt_balance to set
+     */
+    public void setDebt_balance(float debt_balance) {
+        this.debt_balance = debt_balance;
+    }
 
     private String firstName;
     private String lastName;
@@ -18,6 +60,9 @@ public class UserInformation {
     private String phoneNumber;
     private String emailAddress;
     private String gender;
+    private int userID;
+    private float account_balance;
+    private float debt_balance;
    
     /**
      * @return the First Name

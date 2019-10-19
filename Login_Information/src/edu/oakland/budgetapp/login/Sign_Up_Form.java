@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.oakland.budgetapp.login_information;
+package edu.oakland.budgetapp.login;
 
+import edu.oakland.budgetapp.DB.UserInformation;
 import edu.oakland.budgetapp.DB.DbConnector;
 import javax.swing.BorderFactory;
 import java.awt.Color;
@@ -17,7 +18,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author bigya
+ * @author bigya, Mousumi Das
  */
 public class Sign_Up_Form extends javax.swing.JFrame {
 
@@ -26,78 +27,60 @@ public class Sign_Up_Form extends javax.swing.JFrame {
      */
     public Sign_Up_Form() {
         initComponents();
-        
-        
-         // center the form
+
+        // center the form
         this.setLocationRelativeTo(null);
-        
+
         // creating a border for jlable 1 and jlable 2
-         Border mini_label1_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
-         mini_label1.setBorder(mini_label1_border);
-        
-         Border cancel_label2_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
-         cancel_lable2.setBorder(cancel_label2_border);
-        
+        Border mini_label1_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
+        mini_label1.setBorder(mini_label1_border);
+
+        Border cancel_label2_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
+        cancel_lable2.setBorder(cancel_label2_border);
+
         // create border for the text and password fields
-        Border field_border = BorderFactory.createMatteBorder(1 ,1 ,1 ,1,Color.black);
+        Border field_border = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
         first_name_field.setBorder(field_border);
         last_name_field.setBorder(field_border);
         email_field.setBorder(field_border);
         password_field.setBorder(field_border);
         conform_password_field.setBorder(field_border);
         phone_number_field.setBorder(field_border);
-        
+
         // creating a button group for the radio buttons, helps select one from the list
         ButtonGroup group = new ButtonGroup();
         group.add(male_radio_button);
         group.add(female_radio_button);
     }
+
     // creating functions to identify the empty fields
-    public boolean verifyFields()
-    {
-       // String fstName = first_name_field.getText();
-       // String lastName = last_name_field.getText();
+    public boolean verifyFields() {
+        // String fstName = first_name_field.getText();
+        // String lastName = last_name_field.getText();
         //String email = email_field.getText();
         //String password = String.valueOf(password_field.getPassword());
-       // String confPassword = String.valueOf(conform_password_field.getPassword());
-        
-        if(first_name_field.getText().equals("") || last_name_field.getText().equals("") ||
-              email_field.getText().equals("") ||  (password_field.getPassword().equals("") ) ||
-              (conform_password_field.getPassword().equals(""))  )
-        {
+        // String confPassword = String.valueOf(conform_password_field.getPassword());
+
+        if (first_name_field.getText().equals("") || last_name_field.getText().equals("")
+                || email_field.getText().equals("") || (password_field.getPassword().equals(""))
+                || (conform_password_field.getPassword().equals(""))) {
             JOptionPane.showMessageDialog(null, "one or More Fields Are Empty");
             return false;
-        }
-        
-        //checking two passwords are same
-        else if(password_field.getPassword().equals(conform_password_field.getPassword()))
-                {
-                    JOptionPane.showMessageDialog(null, "The Password does not Match! Try Again");
-                    return false;
-                }
-        
-        else
-        {
+        } //checking two passwords are same
+        else if (password_field.getPassword().equals(conform_password_field.getPassword())) {
+            JOptionPane.showMessageDialog(null, "The Password does not Match! Try Again");
+            return false;
+        } else {
             return true;
         }
-        
-    }
-    
-    // creating a FUNCTION TO CHECK IF THE ENTERED USERNAME ALREADY EXISTS IN DATABASE
 
-   // public boolean checkusrname(String usrname)
-  //  {
-        //PreparedStatement st;
-        
-   // }
-    
-    
-    
-    
-    
-    
-    
-    
+    }
+
+    // creating a FUNCTION TO CHECK IF THE ENTERED USERNAME ALREADY EXISTS IN DATABASE
+    // public boolean checkusrname(String usrname)
+    //  {
+    //PreparedStatement st;
+    // }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -432,64 +415,76 @@ public class Sign_Up_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_signup_fieldMouseExited
 
     private void signup_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_fieldActionPerformed
-        
-        if(!this.jCheckBox1.isSelected())
-        {
+
+        if (!this.jCheckBox1.isSelected()) {
             JOptionPane.showMessageDialog(this, "You must accept Terms of Use!",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-            
-        String password=new String (this.password_field.getPassword());
-        String confirmPassword=new String (this.conform_password_field.getPassword());
-        
-        if (password.compareTo(confirmPassword)!=0){
-             JOptionPane.showMessageDialog(this, "Passwords do not match!",
+
+        String password = new String(this.password_field.getPassword());
+        String confirmPassword = new String(this.conform_password_field.getPassword());
+
+        if (password.compareTo(confirmPassword) != 0) {
+            JOptionPane.showMessageDialog(this, "Passwords do not match!",
                     "Invalid password", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        
-        UserInformation newUser= new UserInformation();
+
+        UserInformation newUser = new UserInformation();
         newUser.setFirstName(this.first_name_field.getText());
         newUser.setLastName(this.last_name_field.getText());
         newUser.setAddress(this.address_field.getText());
         newUser.setEmailAddress(this.email_field.getText());
-        newUser.setPassword( password );
+        newUser.setPassword(password);
         newUser.setPhoneNumber(this.phone_number_field.getText());
-        if(this.male_radio_button.isSelected())
+        if (this.male_radio_button.isSelected()) {
             newUser.setGender("M");
-        else newUser.setGender("F");
-        
-        if (newUser.getFirstName().length()==0 ||newUser.getLastName().length()==0){
-             JOptionPane.showMessageDialog(this, "First name and Last name cannot be empty!",
+        } else {
+            newUser.setGender("F");
+        }
+
+        if (newUser.getFirstName().length() == 0 || newUser.getLastName().length() == 0) {
+            JOptionPane.showMessageDialog(this, "First name and Last name cannot be empty!",
                     "Invalid name", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(!isValidEmailAddress(newUser.getEmailAddress())){
+        if (!isValidEmailAddress(newUser.getEmailAddress())) {
             JOptionPane.showMessageDialog(this, "Invalid email address!",
                     "Invalid email", JOptionPane.ERROR_MESSAGE);
         }
-        
-        DbConnector connection =DbConnector.getDBConnection();
-        connection.saveNewUser(newUser);
-        
-        JOptionPane.showMessageDialog(this, "New User created",
+
+        DbConnector connection = DbConnector.getDBConnection();
+
+        if (connection.getUserID(newUser.getEmailAddress())) {
+            JOptionPane.showMessageDialog(this, "Account exists for " + newUser.getEmailAddress() + ".  Please try your login!",
+                    "User exists", JOptionPane.ERROR_MESSAGE);
+            SwitchToLoginForm();
+        } else {
+            connection.saveNewUser(newUser);
+
+            JOptionPane.showMessageDialog(this, "New User created",
                     "Success", JOptionPane.PLAIN_MESSAGE);
+
+            SwitchToLoginForm();
+        }
+    }//GEN-LAST:event_signup_fieldActionPerformed
+
+    private void SwitchToLoginForm() {
         Login_Form login = new Login_Form();
         login.setVisible(true);
         login.pack();
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
-    }//GEN-LAST:event_signup_fieldActionPerformed
+    }
 
     public boolean isValidEmailAddress(String email) {
-           String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-           java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-           java.util.regex.Matcher m = p.matcher(email);
-           return m.matches();
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
-    
+
     private void mini_label1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mini_label1MouseClicked
 
         this.setState(JFrame.ICONIFIED);
@@ -542,11 +537,11 @@ public class Sign_Up_Form extends javax.swing.JFrame {
         String phone_no = " "; // all numbers stored to make a phone number
         char number = evt.getKeyChar();
         // make sure phone number field has no other than numbers
-        if(((number < '0')|| (number > '9')))
+        if (((number < '0') || (number > '9'))) {
             evt.consume();  // ignore the char
-        // make sure phone number has not more than 10 digits
+        }        // make sure phone number has not more than 10 digits
         phone_no = phone_number_field.getText(); // get the string from the text box
-        if(phone_no.length() > 9) // get the length and compare
+        if (phone_no.length() > 9) // get the length and compare
             evt.consume(); // ignore the char
     }//GEN-LAST:event_phone_number_fieldKeyTyped
 
@@ -557,17 +552,13 @@ public class Sign_Up_Form extends javax.swing.JFrame {
     private void account_existsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_account_existsMouseClicked
         // creating a connection to login form
 
-        Login_Form lf = new Login_Form();
-        lf.setVisible(true);
-        lf.pack();
-        lf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        SwitchToLoginForm();
 
     }//GEN-LAST:event_account_existsMouseClicked
 
     private void account_existsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_account_existsMouseEntered
 
-        Border new_account_border = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color (0,153,0));
+        Border new_account_border = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 153, 0));
         account_exists.setBorder(new_account_border);
 
     }//GEN-LAST:event_account_existsMouseEntered
@@ -581,8 +572,6 @@ public class Sign_Up_Form extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_address_fieldActionPerformed
 
-    
-        
     /**
      * @param args the command line arguments
      */

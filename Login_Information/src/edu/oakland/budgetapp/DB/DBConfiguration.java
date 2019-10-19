@@ -12,8 +12,8 @@ package edu.oakland.budgetapp.DB;
 public class DBConfiguration {
     public static String DBHost="localhost";
     public static String DBSchema="budget_app";
-    public static String UserName="root";
-    public static String Password="admin";
+    public static String UserName="mousumi";
+    public static String Password="@mousumid@s";
     
     
 }
