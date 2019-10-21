@@ -23,7 +23,7 @@ public class DbConnector {
             connect = DriverManager.getConnection("jdbc:mysql://" + DBConfiguration.DBHost
                     + "/" + DBConfiguration.DBSchema + "?"
                     + "user=" + DBConfiguration.UserName
-                    + "&password=" + DBConfiguration.Password + "&useSSL=False");
+                    + "&password=" + DBConfiguration.Password + "&useSSL=False&allowPublicKeyRetrieval=true");
         } catch (ClassNotFoundException e1) {
 
             e1.printStackTrace();

@@ -1,28 +1,44 @@
--- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
---
--- Host: localhost    Database: budget_app
--- ------------------------------------------------------
--- Server version	8.0.18
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               8.0.12 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Version:             9.4.0.5125
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `user_information`
---
+-- Dumping structure for table budget_app.user_expenses
+CREATE TABLE IF NOT EXISTS `user_expenses` (
+  `expense_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `description` varchar(255) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`expense_id`),
+  KEY `fk_user_expense_idx` (`userid`),
+  CONSTRAINT `fk_user_expense` FOREIGN KEY (`userid`) REFERENCES `user_information` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `user_information`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_information` (
+-- Data exporting was unselected.
+-- Dumping structure for table budget_app.user_income
+CREATE TABLE IF NOT EXISTS `user_income` (
+  `income_id` int(11) NOT NULL,
+  `userid` int(11) DEFAULT NULL,
+  `income_category` varchar(255) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `Description` varchar(512) DEFAULT NULL,
+  PRIMARY KEY (`income_id`),
+  KEY `fk_income_user_idx` (`userid`),
+  CONSTRAINT `fk_income_user` FOREIGN KEY (`userid`) REFERENCES `user_information` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table budget_app.user_information
+CREATE TABLE IF NOT EXISTS `user_information` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
@@ -31,26 +47,12 @@ CREATE TABLE `user_information` (
   `phone` varchar(45) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `account_balance` decimal(10,2) DEFAULT '0.00',
+  `debt_balance` decimal(10,2) DEFAULT '0.00',
   PRIMARY KEY (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `user_information`
---
-
-LOCK TABLES `user_information` WRITE;
-/*!40000 ALTER TABLE `user_information` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_information` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+-- Data exporting was unselected.
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-10-15  1:14:20
